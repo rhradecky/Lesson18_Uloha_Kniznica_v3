@@ -41,6 +41,7 @@ def aplikacia():
             Book.vloz_do_db(cursor, authorID, genreID)
             conn.commit()
 
+
         if choice == "4":
             Search.hladaj_v_db(cursor)
             conn.commit()
