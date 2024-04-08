@@ -16,11 +16,16 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 def vypis_menu():
+    print()
     print("1. Pridat autora")
     print("2. Pridat zaner")
     print("3. Pridat knihu")
-    print("4. Hladaj knihu")
-    print("5. Pridat uzivatela")
+    print("4. Vymazat knihu")
+    print("5. Hladaj knihu")
+    print("6. Pridat uzivatela")
+    print("7. Vymazat uzivatela")
+
+
 
 
 def aplikacia():
@@ -41,19 +46,32 @@ def aplikacia():
             Book.vloz_do_db(cursor, authorID, genreID)
             conn.commit()
 
+        elif choice == "4":
+            Book.zobraz_knihy(cursor)
+            Book.vymaz_z_db(cursor)
+            Book.zobraz_knihy(cursor)
+            conn.commit()
 
-        if choice == "4":
-            Search.hladaj_v_db(cursor)
+
+
+        if choice == "5":
+            print()
+            Book.zobraz_knihy(cursor)
+            Book.hladaj_v_db(cursor)
             conn.commit()
 
 
 
 
-        elif choice == "5":
+        elif choice == "6":
             Members.vloz_do_db(cursor)
             Members.zobraz_uzivatelov(cursor)
             conn.commit()
-
+        elif choice == "7":
+            Members.zobraz_uzivatelov(cursor)
+            Members.vymaz_z_db(cursor)
+            Members.zobraz_uzivatelov(cursor)
+            conn.commit()
         else:
             print("Neplatny vstup")
 

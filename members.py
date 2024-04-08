@@ -16,18 +16,28 @@ class Members:
         first_name = input()
         print("Vlozte priezvisko: ")
         last_name = input()
-
         print("Vlozte email: ")
         email = input()
-
         cursor.execute("INSERT INTO members (first_name, last_name, email) VALUES (%s, %s, %s)", (first_name, last_name, email))
+
+
+    def vymaz_z_db(cursor):
+        print("Zadaj ID uzivatela, ktoreho chcete vymazat: ")
+        member_id = int(input())
+        cursor.execute("DELETE FROM members WHERE member_id = %s;", (member_id,))
+        print()
+
+
+
+
+
 
     def zobraz_uzivatelov(cursor):
         print("-- Zoznam autorov --")
         cursor.execute('SELECT * FROM members')
         uzivatelia = cursor.fetchall()
         for uzivatel in uzivatelia:
-            print(f"Meno: {uzivatel[1]}, Priezvisko: {uzivatel[2]}, Email: {uzivatel[3]}")
+            print(f"ID: {uzivatel[0]}, Meno: {uzivatel[1]}, Priezvisko: {uzivatel[2]}, Email: {uzivatel[3]}")
 
         def __str__(self):
             return f"---MEMBER---\nID Autora: {self.first_name}\nMeno: {self.last_name}"
