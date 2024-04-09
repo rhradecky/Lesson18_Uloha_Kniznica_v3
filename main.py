@@ -6,10 +6,11 @@ from members import Members
 
 
 conn = psycopg2.connect(
-    dbname='b4l1o2iguxktujhgmzv1',
-    user='uhkelmgkhpkwcyjdl3qd',
-    password='ZIuTMMFceJbOGxBmDJGxtBRfTrRVSs',
-    host='b4l1o2iguxktujhgmzv1-postgresql.services.clever-cloud.com',
+    dbname='bdipmw29ejuoeccxynb1',
+    user='upkjsca8ynbl11b0ikgz',
+    password='f1nKXzsR6eivAWjmQDT6i6W0E7b2vG',
+    host='bdipmw29ejuoeccxynb1-postgresql.services.clever-cloud.com',
+    port='50013'
     port=50013
 )
 
