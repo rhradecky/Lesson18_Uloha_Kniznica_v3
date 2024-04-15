@@ -3,6 +3,7 @@ from author import Author
 from book import Book
 from genre import Genre
 from members import Members
+from loans import Loans
 
 
 conn = psycopg2.connect(
@@ -11,8 +12,7 @@ conn = psycopg2.connect(
     password='f1nKXzsR6eivAWjmQDT6i6W0E7b2vG',
     host='bdipmw29ejuoeccxynb1-postgresql.services.clever-cloud.com',
     port='50013'
-    port=50013
-)
+    )
 
 cursor = conn.cursor()
 
@@ -26,8 +26,8 @@ def vypis_menu():
     print("6. Pridat uzivatela")
     print("7. Vymazat uzivatela")
 
-
-
+    print("8. Pozicat knihu")
+    print("9. Zobrazenie aktualnych vypoziciek")
 
 def aplikacia():
     while True:
@@ -39,6 +39,7 @@ def aplikacia():
         elif choice == "2":
             Genre.vloz_do_db(cursor)
             conn.commit()
+
         elif choice == "3":
             Author.zobraz_autorov(cursor)
             authorID = input("ID Authora: ")
@@ -61,9 +62,6 @@ def aplikacia():
             Book.hladaj_v_db(cursor)
             conn.commit()
 
-
-
-
         elif choice == "6":
             Members.vloz_do_db(cursor)
             Members.zobraz_uzivatelov(cursor)
@@ -73,7 +71,21 @@ def aplikacia():
             Members.vymaz_z_db(cursor)
             Members.zobraz_uzivatelov(cursor)
             conn.commit()
-        else:
-            print("Neplatny vstup")
+
+        if choice == "8":
+            print()
+            Book.zobraz_knihy(cursor)
+            book_id = input("Vyber ID  knihy, ktoru si chces pozicat ")
+            Members.zobraz_uzivatelov(cursor)
+            member_id = input("Vyber ID  uzivatela ")
+            Loans.vloz_do_db(cursor, book_id, member_id)
+            conn.commit()
+
+
+
+
+        elif choice == "9":
+            Loans.zobraz_vypozicky(cursor)
+            conn.commit()
 
 aplikacia()

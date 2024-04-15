@@ -33,7 +33,8 @@ class Members:
 
 
     def zobraz_uzivatelov(cursor):
-        print("-- Zoznam autorov --")
+        print()
+        print("-- Zoznam Registrovanych Uzivatelov--")
         cursor.execute('SELECT * FROM members')
         uzivatelia = cursor.fetchall()
         for uzivatel in uzivatelia:

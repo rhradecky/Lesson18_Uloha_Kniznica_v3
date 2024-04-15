@@ -18,9 +18,9 @@ class Book:
         title = input()
         print("Vlozte ISBN: ")
         isbn = input()
-        cursor.execute("INSERT INTO books (title, author_id, genre_id, isbn) VALUES (%s, %s, %s, %s)", (title, author_id, genre_id, isbn))
+        cursor.execute("INSERT INTO books (title, author_id, genre_id, isbn) VALUES (%s, %s, %s, %s)",(title, author_id, genre_id, isbn))
+        print("Kniha ",title," bola vlozena")
 
-    @staticmethod
     def hladaj_v_db(cursor):
         print("Vyhladavanie knih podla ")
         print("1. Nazov")
